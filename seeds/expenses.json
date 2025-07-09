@@ -1,0 +1,122 @@
+[
+  {
+    "category": "مصاريف إدارية",
+    "amount": 2500,
+    "date": "2025-01-05",
+    "purpose": "شراء مستلزمات مكتبية",
+    "approvalStatus": "approved",
+    "notes": "أوراق، أقلام، وطابعة جديدة"
+  },
+  {
+    "category": "مصاريف النقل",
+    "amount": 800,
+    "date": "2025-01-10",
+    "purpose": "وقود المركبات",
+    "approvalStatus": "approved",
+    "notes": "دفعة وقود لجميع المركبات"
+  },
+  {
+    "category": "مصاريف الصيانة",
+    "amount": 1500,
+    "date": "2025-01-15",
+    "purpose": "صيانة المركبات",
+    "approvalStatus": "approved",
+    "notes": "صيانة دورية للمركبات"
+  },
+  {
+    "category": "مصاريف النشاطات",
+    "amount": 3000,
+    "date": "2025-01-20",
+    "purpose": "تنظيم رحلة الحج",
+    "approvalStatus": "approved",
+    "notes": "تكاليف رحلة الحج السنوية"
+  },
+  {
+    "category": "مصاريف الخير",
+    "amount": 5000,
+    "date": "2025-02-01",
+    "purpose": "مساعدة الأسر المحتاجة",
+    "approvalStatus": "approved",
+    "notes": "مساعدات شهرية للأسر المحتاجة"
+  },
+  {
+    "category": "مصاريف إدارية",
+    "amount": 1200,
+    "date": "2025-02-05",
+    "purpose": "فاتورة الكهرباء والماء",
+    "approvalStatus": "approved",
+    "notes": "فواتير المرافق للشهر"
+  },
+  {
+    "category": "مصاريف النقل",
+    "amount": 600,
+    "date": "2025-02-10",
+    "purpose": "إصلاح عطل في المركبة",
+    "approvalStatus": "approved",
+    "notes": "إصلاح عطل في محرك السيارة"
+  },
+  {
+    "category": "مصاريف النشاطات",
+    "amount": 2000,
+    "date": "2025-02-15",
+    "purpose": "تنظيم ورشة عمل",
+    "approvalStatus": "pending",
+    "notes": "تكاليف ورشة عمل للشباب"
+  },
+  {
+    "category": "مصاريف الخير",
+    "amount": 3500,
+    "date": "2025-03-01",
+    "purpose": "شراء مستلزمات رمضان",
+    "approvalStatus": "approved",
+    "notes": "مستلزمات إفطار الصائمين"
+  },
+  {
+    "category": "مصاريف إدارية",
+    "amount": 800,
+    "date": "2025-03-05",
+    "purpose": "تحديث البرامج الحاسوبية",
+    "approvalStatus": "approved",
+    "notes": "ترقية برامج الحاسوب"
+  },
+  {
+    "category": "مصاريف النقل",
+    "amount": 900,
+    "date": "2025-03-10",
+    "purpose": "تأمين المركبات",
+    "approvalStatus": "approved",
+    "notes": "تجديد تأمين جميع المركبات"
+  },
+  {
+    "category": "مصاريف النشاطات",
+    "amount": 1500,
+    "date": "2025-03-15",
+    "purpose": "تنظيم معرض خيري",
+    "approvalStatus": "pending",
+    "notes": "تكاليف معرض الخير السنوي"
+  },
+  {
+    "category": "مصاريف الخير",
+    "amount": 4000,
+    "date": "2025-04-01",
+    "purpose": "مساعدة طلاب العلم",
+    "approvalStatus": "approved",
+    "notes": "منح دراسية للطلاب المحتاجين"
+  },
+  {
+    "category": "مصاريف إدارية",
+    "amount": 1800,
+    "date": "2025-04-05",
+    "purpose": "صيانة المبنى",
+    "approvalStatus": "approved",
+    "notes": "صيانة دورية لمبنى الجمعية"
+  },
+  {
+    "category": "مصاريف النقل",
+    "amount": 700,
+    "date": "2025-04-10",
+    "purpose": "شراء إطارات جديدة",
+    "approvalStatus": "approved",
+    "notes": "استبدال إطارات المركبات"
+  }
+] 

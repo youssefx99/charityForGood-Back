@@ -1,0 +1,92 @@
+[
+  {
+    "startDate": "2025-01-10",
+    "endDate": "2025-01-12",
+    "purpose": "رحلة الحج السنوية",
+    "startOdometer": 45000,
+    "endOdometer": 45800,
+    "status": "completed",
+    "notes": "رحلة الحج السنوية للمجموعة الأولى"
+  },
+  {
+    "startDate": "2025-01-15",
+    "endDate": "2025-01-17",
+    "purpose": "زيارة الأسر المحتاجة",
+    "startOdometer": 32000,
+    "endOdometer": 32500,
+    "status": "completed",
+    "notes": "زيارة دورية للأسر المحتاجة في المنطقة"
+  },
+  {
+    "startDate": "2025-02-01",
+    "endDate": "2025-02-01",
+    "purpose": "نقل مستلزمات الخير",
+    "startOdometer": 18000,
+    "endOdometer": 18150,
+    "status": "completed",
+    "notes": "نقل مستلزمات إفطار الصائمين"
+  },
+  {
+    "startDate": "2025-02-10",
+    "endDate": "2025-02-12",
+    "purpose": "رحلة تعليمية للشباب",
+    "startOdometer": 75000,
+    "endOdometer": 75800,
+    "status": "completed",
+    "notes": "رحلة تعليمية للشباب إلى المدينة المنورة"
+  },
+  {
+    "startDate": "2025-02-20",
+    "endDate": "2025-02-20",
+    "purpose": "نقل متطوعين",
+    "startOdometer": 12000,
+    "endOdometer": 12100,
+    "status": "completed",
+    "notes": "نقل المتطوعين لموقع النشاط"
+  },
+  {
+    "startDate": "2025-03-01",
+    "endDate": "2025-03-03",
+    "purpose": "رحلة رمضان",
+    "startOdometer": 38000,
+    "endOdometer": 38600,
+    "status": "completed",
+    "notes": "رحلة رمضان السنوية"
+  },
+  {
+    "startDate": "2025-03-15",
+    "endDate": "2025-03-15",
+    "purpose": "نقل بضائع خيرية",
+    "startOdometer": 42000,
+    "endOdometer": 42200,
+    "status": "completed",
+    "notes": "نقل بضائع خيرية للمستفيدين"
+  },
+  {
+    "startDate": "2025-04-01",
+    "endDate": "2025-04-05",
+    "purpose": "رحلة العمرة",
+    "startOdometer": 25000,
+    "endOdometer": 25800,
+    "status": "scheduled",
+    "notes": "رحلة العمرة للشباب"
+  },
+  {
+    "startDate": "2025-04-10",
+    "endDate": "2025-04-10",
+    "purpose": "نقل متطوعين",
+    "startOdometer": 18000,
+    "endOdometer": null,
+    "status": "in-progress",
+    "notes": "نقل المتطوعين لموقع النشاط"
+  },
+  {
+    "startDate": "2025-04-20",
+    "endDate": "2025-04-22",
+    "purpose": "رحلة خيرية",
+    "startOdometer": 32000,
+    "endOdometer": null,
+    "status": "scheduled",
+    "notes": "رحلة خيرية لمساعدة الأسر المحتاجة"
+  }
+] 

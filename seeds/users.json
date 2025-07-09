@@ -1,0 +1,58 @@
+[
+  {
+    "username": "admin",
+    "password": "123456",
+    "fullName": "أحمد محمد العلي",
+    "email": "admin@charity.org",
+    "role": "admin",
+    "isActive": true
+  },
+  {
+    "username": "manager",
+    "password": "123456",
+    "fullName": "فاطمة عبدالله الزهراني",
+    "email": "manager@charity.org",
+    "role": "manager",
+    "isActive": true
+  },
+  {
+    "username": "staff1",
+    "password": "123456",
+    "fullName": "علي حسن القحطاني",
+    "email": "staff1@charity.org",
+    "role": "staff",
+    "isActive": true
+  },
+  {
+    "username": "staff2",
+    "password": "123456",
+    "fullName": "مريم سعد الغامدي",
+    "email": "staff2@charity.org",
+    "role": "staff",
+    "isActive": true
+  },
+  {
+    "username": "driver1",
+    "password": "123456",
+    "fullName": "خالد عبدالرحمن الشمري",
+    "email": "driver1@charity.org",
+    "role": "member",
+    "isActive": true
+  },
+  {
+    "username": "driver2",
+    "password": "123456",
+    "fullName": "عبدالله محمد الدوسري",
+    "email": "driver2@charity.org",
+    "role": "member",
+    "isActive": true
+  },
+  {
+    "username": "accountant",
+    "password": "123456",
+    "fullName": "سارة أحمد الحربي",
+    "email": "accountant@charity.org",
+    "role": "staff",
+    "isActive": true
+  }
+] 

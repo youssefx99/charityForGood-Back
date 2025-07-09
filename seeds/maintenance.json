@@ -1,0 +1,110 @@
+[
+  {
+    "maintenanceType": "صيانة دورية",
+    "date": "2025-01-05",
+    "odometer": 45000,
+    "description": "تغيير الزيت والفلتر",
+    "cost": 300,
+    "serviceProvider": "مركز صيانة تويوتا",
+    "notes": "صيانة دورية للسيارة الرئيسية"
+  },
+  {
+    "maintenanceType": "إصلاح عطل",
+    "date": "2025-01-15",
+    "odometer": 32000,
+    "description": "إصلاح عطل في الفرامل",
+    "cost": 500,
+    "serviceProvider": "مركز صيانة نيسان",
+    "notes": "إصلاح عطل في نظام الفرامل"
+  },
+  {
+    "maintenanceType": "صيانة دورية",
+    "date": "2025-02-01",
+    "odometer": 18000,
+    "description": "تغيير الإطارات",
+    "cost": 800,
+    "serviceProvider": "مركز صيانة هيونداي",
+    "notes": "استبدال الإطارات الأربعة"
+  },
+  {
+    "maintenanceType": "إصلاح عطل",
+    "date": "2025-02-10",
+    "odometer": 75000,
+    "description": "إصلاح عطل في المحرك",
+    "cost": 1200,
+    "serviceProvider": "مركز صيانة مازدا",
+    "notes": "إصلاح عطل في محرك السيارة"
+  },
+  {
+    "maintenanceType": "صيانة دورية",
+    "date": "2025-02-20",
+    "odometer": 12000,
+    "description": "فحص شامل للسيارة",
+    "cost": 200,
+    "serviceProvider": "مركز صيانة فورد",
+    "notes": "فحص شامل للسيارة الجديدة"
+  },
+  {
+    "maintenanceType": "إصلاح عطل",
+    "date": "2025-03-01",
+    "odometer": 38000,
+    "description": "إصلاح عطل في التكييف",
+    "cost": 400,
+    "serviceProvider": "مركز صيانة شيفروليه",
+    "notes": "إصلاح عطل في نظام التكييف"
+  },
+  {
+    "maintenanceType": "صيانة دورية",
+    "date": "2025-03-10",
+    "odometer": 42000,
+    "description": "تغيير الزيت والفلتر",
+    "cost": 350,
+    "serviceProvider": "مركز صيانة جي إم سي",
+    "notes": "صيانة دورية للسيارة"
+  },
+  {
+    "maintenanceType": "إصلاح عطل",
+    "date": "2025-03-20",
+    "odometer": 25000,
+    "description": "إصلاح عطل في الإضاءة",
+    "cost": 150,
+    "serviceProvider": "مركز صيانة لكزس",
+    "notes": "إصلاح عطل في نظام الإضاءة"
+  },
+  {
+    "maintenanceType": "صيانة دورية",
+    "date": "2025-04-01",
+    "odometer": 45000,
+    "description": "فحص الفرامل",
+    "cost": 100,
+    "serviceProvider": "مركز صيانة تويوتا",
+    "notes": "فحص نظام الفرامل"
+  },
+  {
+    "maintenanceType": "إصلاح عطل",
+    "date": "2025-04-10",
+    "odometer": 32000,
+    "description": "إصلاح عطل في البطارية",
+    "cost": 250,
+    "serviceProvider": "مركز صيانة نيسان",
+    "notes": "استبدال البطارية"
+  },
+  {
+    "maintenanceType": "صيانة دورية",
+    "date": "2025-04-15",
+    "odometer": 18000,
+    "description": "تغيير الزيت والفلتر",
+    "cost": 300,
+    "serviceProvider": "مركز صيانة هيونداي",
+    "notes": "صيانة دورية للسيارة"
+  },
+  {
+    "maintenanceType": "إصلاح عطل",
+    "date": "2025-04-20",
+    "odometer": 75000,
+    "description": "إصلاح عطل في نظام التوجيه",
+    "cost": 600,
+    "serviceProvider": "مركز صيانة مازدا",
+    "notes": "إصلاح عطل في نظام التوجيه"
+  }
+] 

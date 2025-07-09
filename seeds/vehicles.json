@@ -1,0 +1,98 @@
+[
+  {
+    "make": "تويوتا",
+    "model": "كامري",
+    "year": 2020,
+    "licensePlate": "أ ب ج 1234",
+    "status": "available",
+    "currentOdometer": 45000,
+    "fuelType": "gasoline",
+    "registrationExpiry": "2025-12-31",
+    "insuranceExpiry": "2025-06-30",
+    "notes": "سيارة نقل الركاب الرئيسية"
+  },
+  {
+    "make": "نيسان",
+    "model": "باترول",
+    "year": 2019,
+    "licensePlate": "د ه و 5678",
+    "status": "available",
+    "currentOdometer": 32000,
+    "fuelType": "gasoline",
+    "registrationExpiry": "2025-10-15",
+    "insuranceExpiry": "2025-04-15",
+    "notes": "سيارة للرحلات الطويلة"
+  },
+  {
+    "make": "هيونداي",
+    "model": "سانتافي",
+    "year": 2021,
+    "licensePlate": "ز ط ي 9012",
+    "status": "in-use",
+    "currentOdometer": 18000,
+    "fuelType": "gasoline",
+    "registrationExpiry": "2026-03-20",
+    "insuranceExpiry": "2025-09-20",
+    "notes": "سيارة نقل البضائع"
+  },
+  {
+    "make": "مازدا",
+    "model": "سي إكس 5",
+    "year": 2018,
+    "licensePlate": "ك ل م 3456",
+    "status": "maintenance",
+    "currentOdometer": 75000,
+    "fuelType": "gasoline",
+    "registrationExpiry": "2025-08-10",
+    "insuranceExpiry": "2025-02-10",
+    "notes": "تحتاج صيانة دورية"
+  },
+  {
+    "make": "فورد",
+    "model": "إكسبلورر",
+    "year": 2022,
+    "licensePlate": "ن س ع 7890",
+    "status": "available",
+    "currentOdometer": 12000,
+    "fuelType": "gasoline",
+    "registrationExpiry": "2026-01-15",
+    "insuranceExpiry": "2025-07-15",
+    "notes": "سيارة جديدة للاستخدام العام"
+  },
+  {
+    "make": "شيفروليه",
+    "model": "تاهو",
+    "year": 2020,
+    "licensePlate": "ف ق ر 2345",
+    "status": "available",
+    "currentOdometer": 38000,
+    "fuelType": "gasoline",
+    "registrationExpiry": "2025-11-30",
+    "insuranceExpiry": "2025-05-30",
+    "notes": "سيارة متعددة الأغراض"
+  },
+  {
+    "make": "جي إم سي",
+    "model": "يوكون",
+    "year": 2019,
+    "licensePlate": "ش ص ض 6789",
+    "status": "in-use",
+    "currentOdometer": 42000,
+    "fuelType": "gasoline",
+    "registrationExpiry": "2025-09-25",
+    "insuranceExpiry": "2025-03-25",
+    "notes": "سيارة نقل الركاب"
+  },
+  {
+    "make": "لكزس",
+    "model": "إل إكس 570",
+    "year": 2021,
+    "licensePlate": "ت ث خ 0123",
+    "status": "available",
+    "currentOdometer": 25000,
+    "fuelType": "gasoline",
+    "registrationExpiry": "2026-02-28",
+    "insuranceExpiry": "2025-08-28",
+    "notes": "سيارة VIP للضيوف المهمين"
+  }
+] 

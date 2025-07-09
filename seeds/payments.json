@@ -1,0 +1,117 @@
+[
+  {
+    "amount": 500,
+    "paymentDate": "2025-01-15",
+    "paymentMethod": "نقدي",
+    "paymentType": "رسوم العضوية السنوية",
+    "dueDate": "2025-01-31",
+    "isPaid": true,
+    "isInstallment": false,
+    "receiptNumber": "RCP001",
+    "notes": "دفعة رسوم العضوية للعام الجديد"
+  },
+  {
+    "amount": 1000,
+    "paymentDate": "2025-01-20",
+    "paymentMethod": "تحويل بنكي",
+    "paymentType": "تبرع عام",
+    "dueDate": null,
+    "isPaid": true,
+    "isInstallment": false,
+    "receiptNumber": "RCP002",
+    "notes": "تبرع سخي من أحد الأعضاء"
+  },
+  {
+    "amount": 300,
+    "paymentDate": "2025-02-01",
+    "paymentMethod": "نقدي",
+    "paymentType": "رسوم النشاطات",
+    "dueDate": "2025-02-15",
+    "isPaid": true,
+    "isInstallment": false,
+    "receiptNumber": "RCP003",
+    "notes": "رسوم المشاركة في النشاطات"
+  },
+  {
+    "amount": 2000,
+    "paymentDate": "2025-02-10",
+    "paymentMethod": "شيك",
+    "paymentType": "تبرع للمشاريع",
+    "dueDate": null,
+    "isPaid": true,
+    "isInstallment": false,
+    "receiptNumber": "RCP004",
+    "notes": "تبرع لمشروع بناء المسجد"
+  },
+  {
+    "amount": 150,
+    "paymentDate": "2025-02-15",
+    "paymentMethod": "نقدي",
+    "paymentType": "رسوم العضوية الشهرية",
+    "dueDate": "2025-02-28",
+    "isPaid": true,
+    "isInstallment": false,
+    "receiptNumber": "RCP005",
+    "notes": "رسوم العضوية الشهرية"
+  },
+  {
+    "amount": 5000,
+    "paymentDate": "2025-03-01",
+    "paymentMethod": "تحويل بنكي",
+    "paymentType": "تبرع كبير",
+    "dueDate": null,
+    "isPaid": true,
+    "isInstallment": true,
+    "installmentPlan": {
+      "totalAmount": 5000,
+      "numberOfInstallments": 5,
+      "paidInstallments": 1
+    },
+    "receiptNumber": "RCP006",
+    "notes": "تبرع كبير على أقساط"
+  },
+  {
+    "amount": 250,
+    "paymentDate": "2025-03-10",
+    "paymentMethod": "نقدي",
+    "paymentType": "رسوم النشاطات",
+    "dueDate": "2025-03-25",
+    "isPaid": true,
+    "isInstallment": false,
+    "receiptNumber": "RCP007",
+    "notes": "رسوم رحلة الحج"
+  },
+  {
+    "amount": 800,
+    "paymentDate": "2025-03-15",
+    "paymentMethod": "تحويل بنكي",
+    "paymentType": "تبرع عام",
+    "dueDate": null,
+    "isPaid": true,
+    "isInstallment": false,
+    "receiptNumber": "RCP008",
+    "notes": "تبرع لصالح الأسر المحتاجة"
+  },
+  {
+    "amount": 100,
+    "paymentDate": "2025-04-01",
+    "paymentMethod": "نقدي",
+    "paymentType": "رسوم العضوية الشهرية",
+    "dueDate": "2025-04-30",
+    "isPaid": false,
+    "isInstallment": false,
+    "receiptNumber": "RCP009",
+    "notes": "رسوم العضوية الشهرية - متأخرة"
+  },
+  {
+    "amount": 1500,
+    "paymentDate": "2025-04-05",
+    "paymentMethod": "شيك",
+    "paymentType": "تبرع للمشاريع",
+    "dueDate": null,
+    "isPaid": true,
+    "isInstallment": false,
+    "receiptNumber": "RCP010",
+    "notes": "تبرع لمشروع إفطار الصائمين"
+  }
+] 
