@@ -1,14 +1,12 @@
 const express = require('express');
 const router = express.Router();
 const { 
-  getMaintenanceRecords, 
+  getMaintenance, 
   getMaintenanceRecord, 
-  createMaintenanceRecord, 
-  updateMaintenanceRecord, 
-  deleteMaintenanceRecord, 
-  completeMaintenance,
-  uploadDocument,
-  uploadMiddleware
+  createMaintenance, 
+  updateMaintenance, 
+  deleteMaintenance,
+  updateMaintenanceStatus
 } = require('../controllers/maintenanceController');
 const { protect, authorize } = require('../middleware/auth');
 
@@ -17,18 +15,15 @@ router.use(protect);
 
 // Routes with all authentication
 router.route('/')
-  .get(getMaintenanceRecords)
-  .post(authorize('admin', 'staff'), createMaintenanceRecord);
+  .get(getMaintenance)
+  .post(authorize('admin', 'staff'), createMaintenance);
 
 router.route('/:id')
   .get(getMaintenanceRecord)
-  .put(authorize('admin', 'staff'), updateMaintenanceRecord)
-  .delete(authorize('admin'), deleteMaintenanceRecord);
+  .put(authorize('admin', 'staff'), updateMaintenance)
+  .delete(authorize('admin'), deleteMaintenance);
 
-// Complete maintenance
-router.put('/:id/complete', authorize('admin', 'staff'), completeMaintenance);
-
-// Upload document
-router.put('/:id/document', authorize('admin', 'staff'), uploadMiddleware, uploadDocument);
+// Update maintenance status
+router.put('/:id/status', authorize('admin', 'staff'), updateMaintenanceStatus);
 
 module.exports = router;

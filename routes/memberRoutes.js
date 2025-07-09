@@ -5,9 +5,7 @@ const {
   getMember, 
   createMember, 
   updateMember, 
-  deleteMember, 
-  uploadMemberPhoto,
-  uploadMiddleware
+  deleteMember
 } = require('../controllers/memberController');
 const { protect, authorize } = require('../middleware/auth');
 
@@ -23,8 +21,5 @@ router.route('/:id')
   .get(getMember)
   .put(authorize('admin', 'staff'), updateMember)
   .delete(authorize('admin'), deleteMember);
-
-// Upload profile photo
-router.put('/:id/photo', authorize('admin', 'staff'), uploadMiddleware, uploadMemberPhoto);
 
 module.exports = router;

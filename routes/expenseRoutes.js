@@ -5,11 +5,9 @@ const {
   getExpense, 
   createExpense, 
   updateExpense, 
-  deleteExpense, 
+  deleteExpense,
   approveExpense,
-  rejectExpense,
-  uploadReceipt,
-  uploadMiddleware
+  rejectExpense
 } = require('../controllers/expenseController');
 const { protect, authorize } = require('../middleware/auth');
 
@@ -26,11 +24,8 @@ router.route('/:id')
   .put(authorize('admin', 'staff'), updateExpense)
   .delete(authorize('admin'), deleteExpense);
 
-// Approval routes
+// Approve/Reject expense
 router.put('/:id/approve', authorize('admin'), approveExpense);
 router.put('/:id/reject', authorize('admin'), rejectExpense);
-
-// Upload receipt
-router.put('/:id/receipt', authorize('admin', 'staff'), uploadMiddleware, uploadReceipt);
 
 module.exports = router;

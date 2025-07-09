@@ -5,10 +5,8 @@ const {
   getPayment, 
   createPayment, 
   updatePayment, 
-  deletePayment, 
-  getMemberPayments,
-  uploadReceipt,
-  uploadMiddleware
+  deletePayment,
+  getPaymentsByMember
 } = require('../controllers/paymentController');
 const { protect, authorize } = require('../middleware/auth');
 
@@ -25,10 +23,7 @@ router.route('/:id')
   .put(authorize('admin', 'staff'), updatePayment)
   .delete(authorize('admin'), deletePayment);
 
-// Get member payment history
-router.get('/member/:memberId', getMemberPayments);
-
-// Upload receipt
-router.put('/:id/receipt', authorize('admin', 'staff'), uploadMiddleware, uploadReceipt);
+// Get payments by member
+router.get('/member/:memberId', getPaymentsByMember);
 
 module.exports = router;

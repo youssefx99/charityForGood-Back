@@ -15,7 +15,6 @@ const express = require("express");
 const cors = require("cors");
 const connectDB = require("./config/db");
 const path = require("path");
-const multer = require("multer");
 const fs = require("fs");
 
 // Initialize Express app
@@ -30,7 +29,8 @@ app.use(
     origin: [
       "http://localhost:3000", 
       "http://localhost:8888",
-      "https://charity-for-good-front.vercel.app", // Add your frontend Vercel URL
+      "https://charity-for-good-front.vercel.app",
+      "https://charity-for-good-front-is02n0f72-youssefs-projects-fe283e23.vercel.app", // Full Vercel URL
       "https://your-frontend-domain.netlify.app"  // Add your frontend Netlify URL if using Netlify
     ],
     credentials: true, // Allow credentials
@@ -44,27 +44,6 @@ app.use(
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Create uploads directories if they don't exist (only in development)
-if (process.env.NODE_ENV !== 'production') {
-  const uploadDirs = [
-    "uploads",
-    "uploads/profiles",
-    "uploads/receipts",
-    "uploads/expenses",
-    "uploads/vehicles",
-    "uploads/maintenance",
-  ];
-
-  uploadDirs.forEach((dir) => {
-    const dirPath = path.join(__dirname, dir);
-    if (!fs.existsSync(dirPath)) {
-      fs.mkdirSync(dirPath, { recursive: true });
-    }
-  });
-
-  // Make uploads directory static (only in development)
-  app.use("/uploads", express.static(path.join(__dirname, "uploads")));
-}
 
 // Health check endpoint for Vercel
 app.get("/health", (req, res) => {

@@ -1,32 +1,4 @@
 const Vehicle = require('../models/Vehicle');
-const multer = require('multer');
-const path = require('path');
-
-// Set up storage for vehicle documents
-const storage = multer.diskStorage({
-  destination: function(req, file, cb) {
-    cb(null, 'uploads/vehicles/');
-  },
-  filename: function(req, file, cb) {
-    cb(null, `vehicle-${Date.now()}${path.extname(file.originalname)}`);
-  }
-});
-
-// File filter
-const fileFilter = (req, file, cb) => {
-  // Accept images and PDFs
-  if (!file.originalname.match(/\.(jpg|jpeg|png|pdf)$/)) {
-    return cb(new Error('يرجى تحميل ملف صورة أو PDF صالح'), false);
-  }
-  cb(null, true);
-};
-
-// Initialize upload
-const upload = multer({
-  storage: storage,
-  limits: { fileSize: 1024 * 1024 * 10 }, // 10MB max
-  fileFilter: fileFilter
-});
 
 // @desc    Get all vehicles
 // @route   GET /api/vehicles
@@ -251,37 +223,4 @@ exports.updateVehicleStatus = async (req, res) => {
   }
 };
 
-// @desc    Upload vehicle document
-// @route   PUT /api/vehicles/:id/document
-// @access  Private
-exports.uploadDocument = async (req, res) => {
-  try {
-    const vehicle = await Vehicle.findById(req.params.id);
-    
-    if (!vehicle) {
-      return res.status(404).json({
-        success: false,
-        message: 'المركبة غير موجودة'
-      });
-    }
-    
-    // Add document path to vehicle documents array
-    const documentPath = `/uploads/vehicles/${req.file.filename}`;
-    vehicle.documents.push(documentPath);
-    await vehicle.save();
-    
-    res.status(200).json({
-      success: true,
-      data: vehicle
-    });
-  } catch (error) {
-    res.status(500).json({
-      success: false,
-      message: 'خطأ في تحميل وثيقة المركبة',
-      error: error.message
-    });
-  }
-};
 
-// Export the upload middleware for use in routes
-exports.uploadMiddleware = upload.single('document');

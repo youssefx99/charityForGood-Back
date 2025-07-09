@@ -1,33 +1,5 @@
 const Payment = require("../models/Payment");
 const Member = require("../models/Member");
-const multer = require("multer");
-const path = require("path");
-
-// Set up storage for receipt documents
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, "uploads/receipts/");
-  },
-  filename: function (req, file, cb) {
-    cb(null, `receipt-${Date.now()}${path.extname(file.originalname)}`);
-  },
-});
-
-// File filter
-const fileFilter = (req, file, cb) => {
-  // Accept images and PDFs
-  if (!file.originalname.match(/\.(jpg|jpeg|png|pdf)$/)) {
-    return cb(new Error("يرجى تحميل ملف صورة أو PDF صالح"), false);
-  }
-  cb(null, true);
-};
-
-// Initialize upload
-const upload = multer({
-  storage: storage,
-  limits: { fileSize: 1024 * 1024 * 5 }, // 5MB max
-  fileFilter: fileFilter,
-});
 
 // @desc    Get all payments
 // @route   GET /api/payments
@@ -222,10 +194,10 @@ exports.deletePayment = async (req, res) => {
   }
 };
 
-// @desc    Get member payment history
+// @desc    Get payments by member
 // @route   GET /api/payments/member/:memberId
 // @access  Private
-exports.getMemberPayments = async (req, res) => {
+exports.getPaymentsByMember = async (req, res) => {
   try {
     const payments = await Payment.find({ member: req.params.memberId })
       .populate("collectedBy", "fullName")
@@ -245,36 +217,4 @@ exports.getMemberPayments = async (req, res) => {
   }
 };
 
-// @desc    Upload payment receipt
-// @route   PUT /api/payments/:id/receipt
-// @access  Private
-exports.uploadReceipt = async (req, res) => {
-  try {
-    const payment = await Payment.findById(req.params.id);
 
-    if (!payment) {
-      return res.status(404).json({
-        success: false,
-        message: "المدفوعات غير موجودة",
-      });
-    }
-
-    // Update receipt path
-    payment.receipt = `/uploads/receipts/${req.file.filename}`;
-    await payment.save();
-
-    res.status(200).json({
-      success: true,
-      data: payment,
-    });
-  } catch (error) {
-    res.status(500).json({
-      success: false,
-      message: "خطأ في تحميل إيصال المدفوعات",
-      error: error.message,
-    });
-  }
-};
-
-// Export the upload middleware for use in routes
-exports.uploadMiddleware = upload.single("receipt");

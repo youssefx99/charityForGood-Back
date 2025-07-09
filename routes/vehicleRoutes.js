@@ -5,10 +5,8 @@ const {
   getVehicle, 
   createVehicle, 
   updateVehicle, 
-  deleteVehicle, 
-  updateVehicleStatus,
-  uploadDocument,
-  uploadMiddleware
+  deleteVehicle,
+  updateVehicleStatus
 } = require('../controllers/vehicleController');
 const { protect, authorize } = require('../middleware/auth');
 
@@ -27,8 +25,5 @@ router.route('/:id')
 
 // Update vehicle status
 router.put('/:id/status', authorize('admin', 'staff'), updateVehicleStatus);
-
-// Upload document
-router.put('/:id/document', authorize('admin', 'staff'), uploadMiddleware, uploadDocument);
 
 module.exports = router;

@@ -1,32 +1,4 @@
 const Expense = require('../models/Expense');
-const multer = require('multer');
-const path = require('path');
-
-// Set up storage for expense receipts
-const storage = multer.diskStorage({
-  destination: function(req, file, cb) {
-    cb(null, 'uploads/expenses/');
-  },
-  filename: function(req, file, cb) {
-    cb(null, `expense-${Date.now()}${path.extname(file.originalname)}`);
-  }
-});
-
-// File filter
-const fileFilter = (req, file, cb) => {
-  // Accept images and PDFs
-  if (!file.originalname.match(/\.(jpg|jpeg|png|pdf)$/)) {
-    return cb(new Error('يرجى تحميل ملف صورة أو PDF صالح'), false);
-  }
-  cb(null, true);
-};
-
-// Initialize upload
-const upload = multer({
-  storage: storage,
-  limits: { fileSize: 1024 * 1024 * 5 }, // 5MB max
-  fileFilter: fileFilter
-});
 
 // @desc    Get all expenses
 // @route   GET /api/expenses
@@ -265,36 +237,4 @@ exports.rejectExpense = async (req, res) => {
   }
 };
 
-// @desc    Upload expense receipt
-// @route   PUT /api/expenses/:id/receipt
-// @access  Private
-exports.uploadReceipt = async (req, res) => {
-  try {
-    const expense = await Expense.findById(req.params.id);
-    
-    if (!expense) {
-      return res.status(404).json({
-        success: false,
-        message: 'المصروفات غير موجودة'
-      });
-    }
-    
-    // Update receipt path
-    expense.receipt = `/uploads/expenses/${req.file.filename}`;
-    await expense.save();
-    
-    res.status(200).json({
-      success: true,
-      data: expense
-    });
-  } catch (error) {
-    res.status(500).json({
-      success: false,
-      message: 'خطأ في تحميل إيصال المصروفات',
-      error: error.message
-    });
-  }
-};
 
-// Export the upload middleware for use in routes
-exports.uploadMiddleware = upload.single('receipt');
