@@ -59,6 +59,5 @@ const VehicleSchema = new mongoose.Schema(
 
 // Indexes for faster queries
 VehicleSchema.index({ status: 1 });
-VehicleSchema.index({ licensePlate: 1 });
 
 module.exports = mongoose.model("Vehicle", VehicleSchema);

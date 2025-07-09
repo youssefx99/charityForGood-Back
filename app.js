@@ -31,6 +31,7 @@ app.use(
       "http://localhost:8888",
       "https://charity-for-good-front.vercel.app",
       "https://charity-for-good-front-is02n0f72-youssefs-projects-fe283e23.vercel.app", // Full Vercel URL
+      "https://charity-for-good-back.vercel.app", // Backend URL
       "https://your-frontend-domain.netlify.app"  // Add your frontend Netlify URL if using Netlify
     ],
     credentials: true, // Allow credentials
@@ -70,7 +71,6 @@ app.use("/api/vehicles", require("./routes/vehicleRoutes"));
 app.use("/api/trips", require("./routes/tripRoutes"));
 app.use("/api/maintenance", require("./routes/maintenanceRoutes"));
 app.use("/api/reports", require("./routes/reportRoutes"));
-app.use("/api/pdf", require("./routes/pdfRoutes"));
 
 // Default route
 app.get("/", (req, res) => {
