@@ -75,7 +75,7 @@ app.use(
         callback(null, true);
       } else {
         console.log("🚫 CORS blocked origin:", origin);
-        callback(new Error('Not allowed by CORS'));
+        callback(null, false); // Changed from Error to false for better handling
       }
     },
     credentials: true, // Allow credentials
@@ -84,6 +84,21 @@ app.use(
     optionsSuccessStatus: 200,
   })
 );
+
+// Additional CORS headers for preflight requests
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', req.headers.origin);
+  res.header('Access-Control-Allow-Credentials', true);
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
+  
+  // Handle preflight requests
+  if (req.method === 'OPTIONS') {
+    res.sendStatus(200);
+  } else {
+    next();
+  }
+});
 
 // Body parsing middleware (remove duplicates)
 app.use(express.json());
