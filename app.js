@@ -20,8 +20,22 @@ const fs = require("fs");
 // Initialize Express app
 const app = express();
 
-// Connect to MongoDB
-connectDB();
+// Connect to MongoDB (but don't crash if it fails in production)
+const initializeApp = async () => {
+  try {
+    await connectDB();
+  } catch (error) {
+    if (process.env.NODE_ENV === 'production') {
+      console.error("Database connection failed, but continuing in production mode");
+    } else {
+      console.error("Database connection failed:", error.message);
+      process.exit(1);
+    }
+  }
+};
+
+// Initialize the app
+initializeApp();
 
 // CORS middleware should be first
 app.use(
@@ -44,7 +58,6 @@ app.use(
 // Body parsing middleware (remove duplicates)
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
 
 // Health check endpoint for Vercel
 app.get("/health", (req, res) => {

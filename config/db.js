@@ -31,8 +31,17 @@ const connectDB = async () => {
     console.log(`MongoDB Connected: ${cached.conn.connection.host}`);
   } catch (error) {
     cached.promise = null;
-    console.error("MongoDB connection error:", error);
-    throw error;
+    console.error("MongoDB connection error:", error.message);
+    
+    // In production, don't exit the process, just log the error
+    if (process.env.NODE_ENV === 'production') {
+      console.error("Database connection failed in production. Please check your MONGODB_URI environment variable.");
+      // Return null instead of throwing to prevent crashes
+      return null;
+    } else {
+      // In development, throw the error
+      throw error;
+    }
   }
 
   return cached.conn;
