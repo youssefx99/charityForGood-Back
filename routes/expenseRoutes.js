@@ -5,7 +5,7 @@ const {
   getExpense, 
   createExpense, 
   updateExpense, 
-  deleteExpense,
+  deleteExpense, 
   approveExpense,
   rejectExpense
 } = require('../controllers/expenseController');

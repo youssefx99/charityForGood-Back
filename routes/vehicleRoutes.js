@@ -5,7 +5,7 @@ const {
   getVehicle, 
   createVehicle, 
   updateVehicle, 
-  deleteVehicle,
+  deleteVehicle, 
   updateVehicleStatus
 } = require('../controllers/vehicleController');
 const { protect, authorize } = require('../middleware/auth');

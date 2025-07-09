@@ -5,7 +5,7 @@ const {
   getPayment, 
   createPayment, 
   updatePayment, 
-  deletePayment,
+  deletePayment, 
   getPaymentsByMember
 } = require('../controllers/paymentController');
 const { protect, authorize } = require('../middleware/auth');
