@@ -7,9 +7,15 @@ if (!process.env.JWT_SECRET) {
 if (!process.env.JWT_EXPIRE) {
   process.env.JWT_EXPIRE = "30d";
 }
-if (!process.env.MONGO_URI) {
-  process.env.MONGO_URI = "mongodb://localhost:27017/charity-db";
+if (!process.env.MONGODB_URI) {
+  process.env.MONGODB_URI = "mongodb://localhost:27017/charity-db";
 }
+
+// Debug environment variables
+console.log("🔧 Environment Variables:");
+console.log("NODE_ENV:", process.env.NODE_ENV);
+console.log("MONGODB_URI exists:", !!process.env.MONGODB_URI);
+console.log("MONGODB_URI starts with:", process.env.MONGODB_URI?.substring(0, 20) + "...");
 
 const express = require("express");
 const cors = require("cors");
@@ -20,15 +26,21 @@ const fs = require("fs");
 // Initialize Express app
 const app = express();
 
-// Connect to MongoDB (but don't crash if it fails in production)
+// Global variable to track database connection status
+let dbConnected = false;
+
+// Connect to MongoDB
 const initializeApp = async () => {
   try {
     await connectDB();
+    dbConnected = true;
+    console.log("✅ Database connected successfully");
   } catch (error) {
+    console.error("❌ Database connection failed:", error.message);
     if (process.env.NODE_ENV === 'production') {
-      console.error("Database connection failed, but continuing in production mode");
+      console.error("⚠️  Continuing without database in production mode");
     } else {
-      console.error("Database connection failed:", error.message);
+      console.error("💥 Exiting in development mode due to database failure");
       process.exit(1);
     }
   }
@@ -65,7 +77,9 @@ app.get("/health", (req, res) => {
     success: true,
     message: "API is healthy",
     timestamp: new Date().toISOString(),
-    environment: process.env.NODE_ENV || "development"
+    environment: process.env.NODE_ENV || "development",
+    database: dbConnected ? "connected" : "disconnected",
+    mongoUriExists: !!process.env.MONGODB_URI
   });
 });
 
@@ -75,15 +89,26 @@ app.use("/test", (req, res) => {
   });
 });
 
-// Define routes
-app.use("/api/auth", require("./routes/authRoutes"));
-app.use("/api/members", require("./routes/memberRoutes"));
-app.use("/api/payments", require("./routes/paymentRoutes"));
-app.use("/api/expenses", require("./routes/expenseRoutes"));
-app.use("/api/vehicles", require("./routes/vehicleRoutes"));
-app.use("/api/trips", require("./routes/tripRoutes"));
-app.use("/api/maintenance", require("./routes/maintenanceRoutes"));
-app.use("/api/reports", require("./routes/reportRoutes"));
+// Database connection middleware
+const requireDB = (req, res, next) => {
+  if (!dbConnected) {
+    return res.status(503).json({
+      success: false,
+      message: "Database is not connected. Please try again later."
+    });
+  }
+  next();
+};
+
+// Define routes with database check
+app.use("/api/auth", requireDB, require("./routes/authRoutes"));
+app.use("/api/members", requireDB, require("./routes/memberRoutes"));
+app.use("/api/payments", requireDB, require("./routes/paymentRoutes"));
+app.use("/api/expenses", requireDB, require("./routes/expenseRoutes"));
+app.use("/api/vehicles", requireDB, require("./routes/vehicleRoutes"));
+app.use("/api/trips", requireDB, require("./routes/tripRoutes"));
+app.use("/api/maintenance", requireDB, require("./routes/maintenanceRoutes"));
+app.use("/api/reports", requireDB, require("./routes/reportRoutes"));
 
 // Default route
 app.get("/", (req, res) => {
@@ -106,7 +131,7 @@ if (process.env.NODE_ENV !== 'production') {
   app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
     console.log(`Environment: ${process.env.NODE_ENV}`);
-    console.log(`MongoDB URI: ${process.env.MONGO_URI}`);
+    console.log(`MongoDB URI: ${process.env.MONGODB_URI}`);
   });
 }
 
