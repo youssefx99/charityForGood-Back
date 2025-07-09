@@ -116,6 +116,38 @@ app.get("/health", (req, res) => {
   });
 });
 
+// Database health check endpoint
+app.get("/db-health", async (req, res) => {
+  try {
+    if (!dbConnected) {
+      return res.status(503).json({
+        success: false,
+        message: "Database not connected",
+        timestamp: new Date().toISOString()
+      });
+    }
+    
+    // Test database connection
+    const mongoose = require('mongoose');
+    const isConnected = mongoose.connection.readyState === 1;
+    
+    res.status(200).json({
+      success: true,
+      message: "Database is healthy",
+      connected: isConnected,
+      readyState: mongoose.connection.readyState,
+      timestamp: new Date().toISOString()
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "Database health check failed",
+      error: error.message,
+      timestamp: new Date().toISOString()
+    });
+  }
+});
+
 // CORS test endpoint
 app.get("/cors-test", (req, res) => {
   res.status(200).json({
