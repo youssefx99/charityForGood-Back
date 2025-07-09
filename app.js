@@ -27,7 +27,12 @@ connectDB();
 // CORS middleware should be first
 app.use(
   cors({
-    origin: ["http://localhost:3000", "http://localhost:8888"], // Specify exact origins
+    origin: [
+      "http://localhost:3000", 
+      "http://localhost:8888",
+      "https://charity-for-good-front.vercel.app", // Add your frontend Vercel URL
+      "https://your-frontend-domain.netlify.app"  // Add your frontend Netlify URL if using Netlify
+    ],
     credentials: true, // Allow credentials
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With"],
@@ -39,25 +44,37 @@ app.use(
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Create uploads directories if they don't exist
-const uploadDirs = [
-  "uploads",
-  "uploads/profiles",
-  "uploads/receipts",
-  "uploads/expenses",
-  "uploads/vehicles",
-  "uploads/maintenance",
-];
+// Create uploads directories if they don't exist (only in development)
+if (process.env.NODE_ENV !== 'production') {
+  const uploadDirs = [
+    "uploads",
+    "uploads/profiles",
+    "uploads/receipts",
+    "uploads/expenses",
+    "uploads/vehicles",
+    "uploads/maintenance",
+  ];
 
-uploadDirs.forEach((dir) => {
-  const dirPath = path.join(__dirname, dir);
-  if (!fs.existsSync(dirPath)) {
-    fs.mkdirSync(dirPath, { recursive: true });
-  }
+  uploadDirs.forEach((dir) => {
+    const dirPath = path.join(__dirname, dir);
+    if (!fs.existsSync(dirPath)) {
+      fs.mkdirSync(dirPath, { recursive: true });
+    }
+  });
+
+  // Make uploads directory static (only in development)
+  app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+}
+
+// Health check endpoint for Vercel
+app.get("/health", (req, res) => {
+  res.status(200).json({
+    success: true,
+    message: "API is healthy",
+    timestamp: new Date().toISOString(),
+    environment: process.env.NODE_ENV || "development"
+  });
 });
-
-// Make uploads directory static
-app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 app.use("/test", (req, res) => {
   res.json({
@@ -91,12 +108,14 @@ app.use((err, req, res, next) => {
   });
 });
 
-// Start server
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-  console.log(`Environment: ${process.env.NODE_ENV}`);
-  console.log(`MongoDB URI: ${process.env.MONGO_URI}`);
-});
+// Only start server if not in production (Vercel handles this)
+if (process.env.NODE_ENV !== 'production') {
+  const PORT = process.env.PORT || 5000;
+  app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+    console.log(`Environment: ${process.env.NODE_ENV}`);
+    console.log(`MongoDB URI: ${process.env.MONGO_URI}`);
+  });
+}
 
 module.exports = app;

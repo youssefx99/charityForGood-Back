@@ -1,32 +1,8 @@
 const Member = require('../models/Member');
-const multer = require('multer');
-const path = require('path');
+const { configureMulter, processUploadedFile } = require('../utils/fileUpload');
 
-// Set up storage for profile photos
-const storage = multer.diskStorage({
-  destination: function(req, file, cb) {
-    cb(null, 'uploads/profiles/');
-  },
-  filename: function(req, file, cb) {
-    cb(null, `member-${Date.now()}${path.extname(file.originalname)}`);
-  }
-});
-
-// File filter
-const fileFilter = (req, file, cb) => {
-  // Accept images only
-  if (!file.originalname.match(/\.(jpg|jpeg|png|gif)$/)) {
-    return cb(new Error('يرجى تحميل ملف صورة صالح'), false);
-  }
-  cb(null, true);
-};
-
-// Initialize upload
-const upload = multer({
-  storage: storage,
-  limits: { fileSize: 1024 * 1024 * 5 }, // 5MB max
-  fileFilter: fileFilter
-});
+// Configure multer for member profile photos
+const { imageUpload } = configureMulter('uploads/profiles/', 5 * 1024 * 1024);
 
 // @desc    Get all members
 // @route   GET /api/members
@@ -201,9 +177,9 @@ exports.deleteMember = async (req, res) => {
 };
 
 // @desc    Upload member profile photo
-// @route   PUT /api/members/:id/photo
+// @route   POST /api/members/:id/photo
 // @access  Private
-exports.uploadMemberPhoto = async (req, res) => {
+exports.uploadProfilePhoto = async (req, res) => {
   try {
     const member = await Member.findById(req.params.id);
     
@@ -213,23 +189,51 @@ exports.uploadMemberPhoto = async (req, res) => {
         message: 'العضو غير موجود'
       });
     }
-    
-    // Update profile photo path
-    member.profilePhoto = `/uploads/profiles/${req.file.filename}`;
-    await member.save();
-    
-    res.status(200).json({
-      success: true,
-      data: member
+
+    // Use the image upload middleware
+    imageUpload.single('profilePhoto')(req, res, async (err) => {
+      if (err) {
+        return res.status(400).json({
+          success: false,
+          message: err.message
+        });
+      }
+
+      if (!req.file) {
+        return res.status(400).json({
+          success: false,
+          message: 'يرجى تحميل ملف صورة'
+        });
+      }
+
+      try {
+        // Process the uploaded file
+        const fileInfo = await processUploadedFile(req.file, 'profiles');
+        
+        // Update member with new profile photo
+        member.profilePhoto = fileInfo.url;
+        await member.save();
+
+        res.status(200).json({
+          success: true,
+          message: 'تم تحميل الصورة بنجاح',
+          data: {
+            profilePhoto: fileInfo.url
+          }
+        });
+      } catch (error) {
+        res.status(500).json({
+          success: false,
+          message: 'خطأ في تحميل الصورة',
+          error: error.message
+        });
+      }
     });
   } catch (error) {
     res.status(500).json({
       success: false,
-      message: 'خطأ في تحميل صورة العضو',
+      message: 'خطأ في تحميل الصورة',
       error: error.message
     });
   }
 };
-
-// Export the upload middleware for use in routes
-exports.uploadMiddleware = upload.single('profilePhoto');
