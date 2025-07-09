@@ -19,7 +19,7 @@ console.log("MONGODB_URI starts with:", process.env.MONGODB_URI?.substring(0, 20
 
 const express = require("express");
 const cors = require("cors");
-const connectDB = require("./config/db");
+const { connectToDB } = require("./config/db");
 const path = require("path");
 const fs = require("fs");
 
@@ -32,7 +32,7 @@ let dbConnected = false;
 // Connect to MongoDB
 const initializeApp = async () => {
   try {
-    await connectDB();
+    await connectToDB();
     dbConnected = true;
     console.log("✅ Database connected successfully");
   } catch (error) {
@@ -52,36 +52,8 @@ initializeApp();
 // CORS middleware should be first
 app.use(
   cors({
-    origin: function (origin, callback) {
-      // Allow requests with no origin (like mobile apps or curl requests)
-      if (!origin) return callback(null, true);
-      
-      const allowedOrigins = [
-        "http://localhost:3000", 
-        "http://localhost:8888",
-        "https://charity-for-good-front.vercel.app",
-        "https://charity-for-good-front-is02n0f72-youssefs-projects-fe283e23.vercel.app",
-        "https://charity-backend.vercel.app",
-        "https://charity-for-good-back.vercel.app",
-        "https://your-frontend-domain.netlify.app"
-      ];
-      
-      // Allow all Vercel domains
-      if (origin.includes('vercel.app')) {
-        return callback(null, true);
-      }
-      
-      if (allowedOrigins.indexOf(origin) !== -1) {
-        callback(null, true);
-      } else {
-        console.log("🚫 CORS blocked origin:", origin);
-        callback(null, false); // Changed from Error to false for better handling
-      }
-    },
-    credentials: true, // Allow credentials
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With"],
-    optionsSuccessStatus: 200,
+    origin: process.env.CORS_ORIGIN || "http://localhost:3000",
+    credentials: true, // Allow cookies to be sent and received
   })
 );
 
