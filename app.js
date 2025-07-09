@@ -52,14 +52,32 @@ initializeApp();
 // CORS middleware should be first
 app.use(
   cors({
-    origin: [
-      "http://localhost:3000", 
-      "http://localhost:8888",
-      "https://charity-for-good-front.vercel.app",
-      "https://charity-for-good-front-is02n0f72-youssefs-projects-fe283e23.vercel.app", // Full Vercel URL
-      "https://charity-for-good-back.vercel.app", // Backend URL
-      "https://your-frontend-domain.netlify.app"  // Add your frontend Netlify URL if using Netlify
-    ],
+    origin: function (origin, callback) {
+      // Allow requests with no origin (like mobile apps or curl requests)
+      if (!origin) return callback(null, true);
+      
+      const allowedOrigins = [
+        "http://localhost:3000", 
+        "http://localhost:8888",
+        "https://charity-for-good-front.vercel.app",
+        "https://charity-for-good-front-is02n0f72-youssefs-projects-fe283e23.vercel.app",
+        "https://charity-backend.vercel.app",
+        "https://charity-for-good-back.vercel.app",
+        "https://your-frontend-domain.netlify.app"
+      ];
+      
+      // Allow all Vercel domains
+      if (origin.includes('vercel.app')) {
+        return callback(null, true);
+      }
+      
+      if (allowedOrigins.indexOf(origin) !== -1) {
+        callback(null, true);
+      } else {
+        console.log("🚫 CORS blocked origin:", origin);
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
     credentials: true, // Allow credentials
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With"],
@@ -80,6 +98,16 @@ app.get("/health", (req, res) => {
     environment: process.env.NODE_ENV || "development",
     database: dbConnected ? "connected" : "disconnected",
     mongoUriExists: !!process.env.MONGODB_URI
+  });
+});
+
+// CORS test endpoint
+app.get("/cors-test", (req, res) => {
+  res.status(200).json({
+    success: true,
+    message: "CORS is working!",
+    origin: req.headers.origin,
+    timestamp: new Date().toISOString()
   });
 });
 
